@@ -4,11 +4,30 @@
   <main>
     <mat-card>
       <mat-form-field appearance="outline">
-        <input type="text" matInput placeholder="Añadir Tarea" #task>
+        <input type="text" matInput placeholder="Añadir Tarea" #task
+          (keyup.enter)="addTask(task.value); task.value=''">
       </mat-form-field>
       <button mat-stroked-button color="primary" (click)="addTask(task.value); task.value=''" class="submitButton">
         Añadir
       </button>
     </mat-card>
+    <br>
+    <table matSort (matSortChange)="sortData($event)">
+      <tr>
+        <th>Id</th>
+        <th mat-sort-header="task">Tarea</th>
+        <th mat-sort-header="date">Fecha de creación</th>
+        <th mat-sort-header="state">Estado</th>
+      </tr>
+      <tr *ngFor="let task of sortedTasks">
+        <td>{{task.id}}</td>
+        <td>{{task.task}}</td>
+        <td>{{task.date}}</td>
+        <td>{{task.state}}</td>
+        <td><button mat-flat-button (click)="delTask(task.id)">Eliminar</button></td>
+      </tr>
+
+    </table>
+    <p>La fecha actual es: {{date | date:'dd/MM/YYYY'}}</p>
   </main>
   

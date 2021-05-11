@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@Angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
     imports: [
@@ -13,14 +14,16 @@ import { MatCardModule } from '@angular/material/card';
         MatFormFieldModule,
         MatInputModule,
         MatToolbarModule,
-        MatCardModule
+        MatCardModule,
+        MatSortModule
     ],
     exports: [
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
         MatToolbarModule,
-        MatCardModule
+        MatCardModule,
+        MatSortModule
     ]
 })
 
