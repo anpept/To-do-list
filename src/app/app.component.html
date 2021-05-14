@@ -11,23 +11,73 @@
         Añadir
       </button>
     </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>
+          Aplica filtros:
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-slide-toggle [(ngModel)]="showFinished">Ver finalizadas</mat-slide-toggle>
+        <mat-slide-toggle *ngIf="!showFinished" [(ngModel)]="showInProcess">Ver en proceso</mat-slide-toggle>
+        <mat-slide-toggle *ngIf="!showFinished" [(ngModel)]="showPending">Ver pendientes</mat-slide-toggle>
+      </mat-card-content>
+    </mat-card>
     <br>
-    <table matSort (matSortChange)="sortData($event)">
+    <mat-card *ngIf="!showFinished&&!showInProcess&&!showPending">
+      <mat-card-header>
+        <mat-card-title>
+          No hay tareas que mostrar.
+        </mat-card-title>
+      </mat-card-header>
+    </mat-card>
+    <table matSort (matSortChange)="sortData($event)" *ngIf="!showFinished">
       <tr>
         <th>Id</th>
         <th mat-sort-header="task">Tarea</th>
         <th mat-sort-header="date">Fecha de creación</th>
         <th mat-sort-header="state">Estado</th>
       </tr>
-      <tr *ngFor="let task of sortedTasks">
-        <td>{{task.id}}</td>
-        <td>{{task.task}}</td>
-        <td>{{task.date}}</td>
-        <td>{{task.state}}</td>
-        <td><button mat-flat-button (click)="delTask(task.id)">Eliminar</button></td>
-      </tr>
-
+      <ng-container *ngFor="let task of sortedTasks">
+        <tr *ngIf= "task.state == 'Pendiente'&&showPending ||
+          task.state == 'En proceso'&&showInProcess">
+          <td>{{task.id}}</td>
+          <td class="cell_task">{{task.task}}</td>
+          <td>{{task.dateStart | date:'dd/MM/YYYY hh:mm'}}</td>
+          <td>
+            <mat-form-field class="cell_state">
+              <mat-label>Cambia estado</mat-label>
+              <mat-select [value]="task.state" #newState>
+                <mat-option value="Pendiente">Pendiente</mat-option>
+                <mat-option value="En proceso">En proceso</mat-option>
+                <mat-option value="Finalizado">Finalizado</mat-option>
+              </mat-select>
+            </mat-form-field></td>
+          <td><button mat-flat-button (click)="changeState(task.id, newState.value)">Modificar</button></td>
+          <td><button mat-flat-button (click)="delTask(task.id)">Eliminar</button></td>
+        </tr>
+      </ng-container>
     </table>
-    <p>La fecha actual es: {{date | date:'dd/MM/YYYY'}}</p>
+    <br>
+    <table matSort (matSortChange)="sortData($event)" *ngIf="showFinished">
+      <tr>
+        <th>Id</th>
+        <th mat-sort-header="task">Tarea</th>
+        <th mat-sort-header="dateStart">Fecha de creación</th>
+        <th mat-sort-header="dateFinish">Fecha de Finalización</th>
+        <th>Estado</th>
+      </tr>
+      <ng-container *ngFor="let task of sortedTasks">
+        <tr *ngIf="task.state =='Finalizado'&&showFinished">
+          <td>{{task.id}}</td>
+          <td>{{task.task}}</td>
+          <td>{{task.dateStart | date:'dd/MM/YYYY hh:mm'}}</td>
+          <td>{{task.dateFinish | date:'dd/MM/YYYY hh:mm'}}</td>
+          <td>{{task.state}}</td>
+          <td><button mat-flat-button (click)="delTask(task.id)">Eliminar</button></td>
+        </tr>
+      </ng-container>
+    </table>
+    <p>Trabajo para la asignatura Daw2</p>
   </main>
   

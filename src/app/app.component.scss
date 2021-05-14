@@ -6,10 +6,19 @@ main{
     margin-top: 1rem;
     text-align: center;
 }
-mat-card, table{
+mat-card {
     margin: auto;
     width: 40%;
     display: block;
+}
+
+table {
+    margin: auto;
+    width: 45%;
+    display: block;
+}
+.cell_task{
+    width: 30%;
 }
 mat-form-field{
     width: 75%;
@@ -22,4 +31,10 @@ mat-form-field{
 .submitButton{
     padding: 0.8em 0 0.3em 0;
     margin-left: 8px;
+}
+mat-slide-toggle{
+    margin-right: 5px;
+}
+.cell_state{
+    max-width: 125px;
 }

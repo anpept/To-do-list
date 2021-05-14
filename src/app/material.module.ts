@@ -7,6 +7,8 @@ import { MatInputModule } from '@Angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
     imports: [
@@ -15,7 +17,9 @@ import { MatSortModule } from '@angular/material/sort';
         MatInputModule,
         MatToolbarModule,
         MatCardModule,
-        MatSortModule
+        MatSortModule,
+        MatSlideToggleModule,
+        MatSelectModule
     ],
     exports: [
         MatButtonModule,
@@ -23,7 +27,9 @@ import { MatSortModule } from '@angular/material/sort';
         MatInputModule,
         MatToolbarModule,
         MatCardModule,
-        MatSortModule
+        MatSortModule,
+        MatSlideToggleModule,
+        MatSelectModule
     ]
 })
 
