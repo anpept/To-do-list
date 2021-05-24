@@ -1,7 +1,7 @@
 export interface Task{
-    id: number;
+    id: string;
     task: string;
-    dateStart: Date;
-    dateFinish: Date;
+    dateStart: Date | any;
+    dateFinish: Date | any;
     state: string;
 }

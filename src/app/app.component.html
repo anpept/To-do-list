@@ -35,7 +35,7 @@
       <tr>
         <th>Id</th>
         <th mat-sort-header="task">Tarea</th>
-        <th mat-sort-header="date">Fecha de creación</th>
+        <th mat-sort-header="dateStart">Fecha de creación</th>
         <th mat-sort-header="state">Estado</th>
       </tr>
       <ng-container *ngFor="let task of sortedTasks">
@@ -43,7 +43,7 @@
           task.state == 'En proceso'&&showInProcess">
           <td>{{task.id}}</td>
           <td class="cell_task">{{task.task}}</td>
-          <td>{{task.dateStart | date:'dd/MM/YYYY hh:mm'}}</td>
+          <td>{{task.dateStart | date:'dd/MM/yyyy hh:mm'}}</td>
           <td>
             <mat-form-field class="cell_state">
               <mat-label>Cambia estado</mat-label>
@@ -75,9 +75,11 @@
           <td>{{task.dateFinish | date:'dd/MM/YYYY hh:mm'}}</td>
           <td>{{task.state}}</td>
           <td><button mat-flat-button (click)="delTask(task.id)">Eliminar</button></td>
+          
         </tr>
       </ng-container>
     </table>
+    
     <p>Trabajo para la asignatura Daw2</p>
   </main>
   
