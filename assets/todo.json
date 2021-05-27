@@ -1,0 +1,51 @@
+[
+    {
+        "id":1,
+        "task":"Estudiar Daw2",
+        "dateStart": "03/15/2021",
+        "dateFinish": "",
+        "state": "En proceso"
+    },
+    {
+        "id":2,
+        "task":"Fregar",
+        "dateStart": "04/10/2021",
+        "dateFinish": "",
+        "state": "En proceso"
+    },
+    {
+        "id":3,
+        "task":"Cervezas",
+        "dateStart": "04/02/2021",
+        "dateFinish": "",
+        "state": "Pendiente"
+    },
+    {
+        "id":4,
+        "task":"Estudiar Drupal",
+        "dateStart": "05/11/2021",
+        "dateFinish": "",
+        "state": "Pendiente"
+    },
+    {
+        "id":5,
+        "task":"Realizar todo app",
+        "dateStart": "03/20/2021",
+        "dateFinish": "",
+        "state": "En proceso"
+    },
+    {
+        "id":6,
+        "task":"Hacer la compra",
+        "dateStart": "03/18/2021",
+        "dateFinish": "04/01/2021",
+        "state": "Finalizado"
+    },
+    {
+       "id":7,
+        "task":"Estudiar más Daw2",
+        "dateStart": "03/28/2021",
+        "dateFinish": "",
+        "state": "En proceso"
+    }
+]
