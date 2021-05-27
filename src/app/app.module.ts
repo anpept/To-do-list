@@ -12,10 +12,12 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { TasklistComponent } from './components/tasklist/tasklist.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TasklistComponent
   ],
   imports: [
     BrowserModule,

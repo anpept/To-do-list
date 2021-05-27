@@ -1,0 +1,29 @@
+table {
+    margin: auto;
+    width: 60%;
+    display: block;
+}
+
+.title{
+    text-align: center;
+    margin-right: auto;
+    width: 100%;
+}
+
+mat-slide-toggle{
+    margin-right: 5px;
+}
+.cell_task{
+    min-width: 300px;
+}
+.date_task{
+    width: 120px;
+}
+.cell_state{
+    max-width: 125px;
+}
+//Cabeceras de la tabla centradas
+::ng-deep .mat-sort-header-container {
+    display:flex;
+    justify-content:center;
+}

@@ -22,7 +22,7 @@ export class TaskService {
   getTasks(): Observable<any[]>{    
     this.tasks = this.tasksCollection.snapshotChanges().pipe(
       map (actions => actions.map (a => {
-        const data = a.payload.doc.data() as any;
+        const data = a.payload.doc.data() as Task;
         data['dateStart'] = a.payload.doc.data()['dateStart'].toDate();
         data['dateFinish'] = a.payload.doc.data()['dateFinish'].toDate();
         return data;
@@ -48,7 +48,7 @@ export class TaskService {
     return new Promise (async (resolve, reject) => {
       try{
         //const data = task;
-        const result = await this.tasksCollection.doc(taskId).update({state: newState});
+        const result = await this.tasksCollection.doc(taskId).update({state: newState, dateFinish: new Date()});
         resolve(result);
       }catch (error){
         reject(error.message);

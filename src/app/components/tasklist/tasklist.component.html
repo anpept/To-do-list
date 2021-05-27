@@ -1,0 +1,101 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-subtitle>
+        Aplica filtros:
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-slide-toggle [(ngModel)]="showFinished">Ver finalizadas</mat-slide-toggle>
+      <mat-slide-toggle *ngIf="!showFinished" [(ngModel)]="showInProcess">Ver en proceso</mat-slide-toggle>
+      <mat-slide-toggle *ngIf="!showFinished" [(ngModel)]="showPending">Ver pendientes</mat-slide-toggle>
+    </mat-card-content>
+</mat-card>
+    <br>
+    <!-- Mensajes para indicar que no hay tareas -->
+<mat-card *ngIf="!showFinished&&!showInProcess&&!showPending || 
+            !showFinished && !(hasTask('En proceso') || hasTask('Pendiente'))">
+    <mat-card-header>
+        <mat-card-title>
+            No hay tareas que mostrar.
+        </mat-card-title>
+    </mat-card-header>
+</mat-card>
+<mat-card *ngIf="showFinished && !hasTask('Finalizado')">
+    <mat-card-header>
+        <mat-card-title>
+            No hay tareas finalizadas que mostrar.
+        </mat-card-title>
+    </mat-card-header>
+</mat-card>
+<mat-card *ngIf="showPending && !showFinished && !showInProcess && !hasTask('Pendiente')">
+    <mat-card-header>
+        <mat-card-title>
+            No hay tareas Pendientes que mostrar.
+        </mat-card-title>
+    </mat-card-header>
+</mat-card>
+<mat-card *ngIf="showInProcess && !showFinished && !showPending && !hasTask('En proceso')">
+    <mat-card-header>
+        <mat-card-title>
+            No hay tareas En Proceso que mostrar.
+        </mat-card-title>
+    </mat-card-header>
+</mat-card>
+    <!-- Tabla que muestra las tareas pendientes y en proceso -->
+<table matSort (matSortChange)="sortData($event)" *ngIf="!showFinished && hasTask('En proceso') && showInProcess|| 
+    !showFinished && hasTask('Pendiente') && showPending" >
+  <tr>
+        
+    <th mat-sort-header="task">Tarea</th>
+    <th mat-sort-header="dateStart">Fecha de creación</th>
+    <th mat-sort-header="state">Estado</th>
+    <th>Acciones</th>
+  </tr>
+  <ng-container *ngFor="let task of sortedTasks">
+    <tr *ngIf= "task.state == 'Pendiente'&&showPending||
+          task.state == 'En proceso'&&showInProcess">
+      <td class="cell_task">{{task.task}}</td>
+      <td>{{task.dateStart | date:'dd/MM/yyyy HH:mm'}}</td>
+      <td>
+        <mat-form-field class="cell_state">
+          <mat-label>Cambia estado</mat-label>
+          <mat-select [value]="task.state" #newState (valueChange)="changeState(task.id, newState.value)">
+            <mat-option value="Pendiente">Pendiente</mat-option>
+            <mat-option value="En proceso">En proceso</mat-option>
+            <mat-option value="Finalizado">Finalizado</mat-option>
+          </mat-select>
+        </mat-form-field></td>
+      <!-- <td><button mat-raised-button color="accent" (click)="changeState(task.id, newState.value)">Modificar</button></td> -->
+      <td><button mat-raised-button color="warn" (click)="delTask(task.id)">Eliminar</button></td>
+    </tr>
+  </ng-container>
+</table>
+
+<!-- Tabla que muestra las tareas finalizadas -->
+<table matSort (matSortChange)="sortData($event)" *ngIf="showFinished && hasTask('Finalizado')">
+  <tr>
+    <th mat-sort-header="task">Tarea</th>
+    <th mat-sort-header="dateStart">Fecha de creación</th>
+    <th mat-sort-header="dateFinish">Fecha de Finalización</th>
+    <th>Estado</th>
+    <th>Acciones</th>
+  </tr>
+  <ng-container *ngFor="let task of sortedTasks">
+    <tr *ngIf="task.state =='Finalizado'&&showFinished">
+      <td class="cell_task">{{task.task}}</td>
+      <td>{{task.dateStart | date:'dd/MM/YYYY HH:mm'}}</td>
+      <td>{{task.dateFinish | date:'dd/MM/YYYY HH:mm'}}</td>
+      <td>
+        <mat-form-field class="cell_state">
+          <mat-label>Cambia estado</mat-label>
+          <mat-select [value]="task.state" #newState (valueChange)="changeState(task.id, newState.value)">
+            <mat-option value="Pendiente">Pendiente</mat-option>
+            <mat-option value="En proceso">En proceso</mat-option>
+            <mat-option value="Finalizado">Finalizado</mat-option>
+          </mat-select>
+        </mat-form-field></td>
+      <!-- <td><button mat-raised-button color="accent" (click)="changeState(task.id, newState.value)">Modificar</button></td> -->
+      <td><button mat-raised-button color="warn" (click)="delTask(task.id)">Eliminar</button></td>          
+    </tr>
+  </ng-container>
+</table>
