@@ -1,27 +1,42 @@
-# Todo
+# To Do List – DAW2
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+###### Este proyecto es una práctica para la asignatura de la ULPGC “Desarrollo de aplicaciones II”. 
 
-## Development server
+El proyecto es un To-Do List que permite añadir y mostrar una lista de tareas y gestionar sus estados. Además, permitirá ordenar las tareas alfabéticamente, según su fecha de creación o su estado.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+###### Demo
 
-## Code scaffolding
+Se puede ver el proyecto en funcionamiento en el siguiente enlace:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+https://anpept.github.io/To-do-list/
 
-## Build
+## Desarrollado con:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+**Node.js** versión: 14.16.0
 
-## Running unit tests
+**NPM** versión: 6.14.11
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Angular** versión: 11.2.13
 
-## Running end-to-end tests
+**Firebase** versión: 6.1.5
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+**Angular Material** versión: 11.2.12
 
-## Further help
+## Cómo instalar el proyecto en local
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Para instalarlo es necesario que se tengan instalados los siguientes programas:
+*Node.js* y *Angular*
+
+Para instalarlo, clone o descargue el zip. Y en la carpeta de extracción usar el comando:
+
+```Npm install```
+
+Una vez instalado, en el fichero ```/src/environment.ts``` colocar la configuración de tu proyecto de firebase. Puedes seguir este tutorial:
+
+https://github.com/angular/angularfire/blob/master/docs/install-and-setup.md
+
+###### Imagen de cómo se debe ver el proyecto:
+
+![imagen](https://user-images.githubusercontent.com/43388989/119885751-21b56600-bf2a-11eb-95af-8e192365db10.png)
+
+
